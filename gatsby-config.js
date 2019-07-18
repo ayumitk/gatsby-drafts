@@ -1,4 +1,4 @@
-module.exports = {
+const cfg = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
     author: `Kyle Mathews`,
@@ -75,4 +75,16 @@ module.exports = {
       },
     },
   ],
+};
+
+if (process.env.CONTEXT !== "production") {
+  cfg.plugins.push({
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `drafts`,
+      path: `${__dirname}/content/drafts`
+    }
+  });
 }
+
+module.exports = cfg;
